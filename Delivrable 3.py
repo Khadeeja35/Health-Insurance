@@ -1,3 +1,4 @@
+#Khadeeja Bibi & Rita Elmahboubi
 import pandas as pd
 import seaborn as sns
 
@@ -6,6 +7,7 @@ df = pd.read_csv("insurance.csv")
 #                            2. Preliminary Steps
 
 # a) Initial data inspection
+
 
 df.head()
 print(df.head())
@@ -47,12 +49,17 @@ print(df)
 
 # a) Numerical variables (mean, median, mode, standard deviation, variance, skewness, kurtosis and quartiles (0.25, 0.5, 0.75))
 
-
+print(df.describe())
 
 # b) Categorical variables (frequency counts, proportion, mode (most frequent category and the number of unique categories).)
 
-
-
+print(df['sex'].value_counts())
+print(df['sex'].value_counts(normalize=True))
+print(df['region'].value_counts())
+print(df['region'].value_counts(normalize=True))
+print(df['smoker'].value_counts())
+print(df['smoker'].value_counts(normalize=True))
+print(df.mode())
 
 #                     4. Univariate Graphical EDA
 
@@ -89,16 +96,21 @@ sns.displot(data = df, x = "age", hue = "sex", kind = "ecdf")
 
 # a) Make use of this approach at least 3 times with different variables from your dataset
 
+print(pd.crosstab(df['sex'], df['smoker']))
+print(pd.crosstab(df['sex'], df['region']))
+print(pd.crosstab(df['smoker'], df['region']))
 
 
 # b) Now use proportions or percentages rather than raw counts (use the “normalize” parameter from crosstab())
 
+print(pd.crosstab(df['sex'], df['smoker'],normalize=True ))
 
 
 # c) Generate at least one three-way frequency table (3 or more variables, by giving a list of variables to crosstab() rather than single variables)
 
+print(pd.crosstab(index=[df['sex'], df['smoker']], columns=df['region'], normalize=True))
 
-
+# Issue encountered. Had to choose which variables are rows(using index=) and which are colums( using colums=)
 
 #                         6. Multivariate graphical EDA
 
@@ -118,7 +130,7 @@ sns.relplot (data = df, x= "age", y = "charges", kind = "line", hue = "smoker", 
 
 # d) 1 plot illustrating standard deviation
 
-sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbars = "sd", height = 5, aspect = 1.5)
+sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
 
 # e) 1 plot including a linear regression
 
@@ -128,11 +140,11 @@ sns.lmplot (data = df, x= "bmi", y = "charges", hue = "smoker", height = 5, aspe
 
 # a) 1 categorical scatter plot with jitter enabled
 
-sns.stripplot (data = df, x= "region", y = "charges", hue = "smoker", jitter = True)
+sns.catplot (data=df, x= "region", y = "charges", jitter = True)
 
 # b) 1 categorical scatter plot with jitter disabled
 
-sns.stripplot (data = df, x= "sex",  y = "charges", hue = "smoker")
+sns.catplot (data = df, x= "sex",  y = "charges", jitter=False)
 
 # c) 1 “beeswarm” plot representing 3 variables
 
@@ -156,7 +168,7 @@ sns.violinplot (data = df, x="smoker", y="charges", inner = "point")
 
 # h) 1 bar plot representing 3 variables showing 97% confidence intervals 
 
-
+sns.catplot(data=df, x='sex', y='age', hue='smoker', kind='bars',errorbar=('pi',97))
 
 # i) 1 point plot representing 3 variables showing 90% confidence intervals and lines in dashed style
 
