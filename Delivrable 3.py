@@ -1,6 +1,7 @@
 #Khadeeja Bibi & Rita Elmahboubi
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("insurance.csv")
 
@@ -49,6 +50,7 @@ print(df)
 
 # a) Numerical variables (mean, median, mode, standard deviation, variance, skewness, kurtosis and quartiles (0.25, 0.5, 0.75))
 
+<<<<<<< HEAD
 print(df.describe())
 
 # b) Categorical variables (frequency counts, proportion, mode (most frequent category and the number of unique categories).)
@@ -60,6 +62,76 @@ print(df['region'].value_counts(normalize=True))
 print(df['smoker'].value_counts())
 print(df['smoker'].value_counts(normalize=True))
 print(df.mode())
+=======
+# For age:
+    
+print(df["age"].mean())
+print(df["age"].median())
+print(df["age"].mode())
+print(df["age"].std())
+print(df["age"].var())
+print(df["age"].skew())
+print(df["age"].kurt())
+print(df["age"].quantile([0.25, 0.5, 0.75]))
+
+# For bmi:
+
+print(df["bmi"].mean())
+print(df["bmi"].median())
+print(df["bmi"].mode())
+print(df["bmi"].std())
+print(df["bmi"].var())
+print(df["bmi"].skew())
+print(df["bmi"].kurt())
+print(df["bmi"].quantile([0.25, 0.5, 0.75]))
+
+# For children
+
+print(df["children"].mean())
+print(df["children"].median())
+print(df["children"].mode())
+print(df["children"].std())
+print(df["children"].var())
+print(df["children"].skew())
+print(df["children"].kurt())
+print(df["children"].quantile([0.25, 0.5, 0.75]))
+
+# For charges:
+
+print(df["charges"].mean())
+print(df["charges"].median())
+print(df["charges"].mode())
+print(df["charges"].std())
+print(df["charges"].var())
+print(df["charges"].skew())
+print(df["charges"].kurt())
+print(df["charges"].quantile([0.25, 0.5, 0.75]))
+
+# b) Categorical variables (frequency counts, proportion, mode (most frequent category and the number of unique categories).)
+
+# For sex:
+    
+print(df["sex"].value_counts())
+print(df["sex"].value_counts(normalize=True))
+print(df["sex"].mode())
+print(df["sex"].nunique())
+
+# For smoker:
+
+print(df["smoker"].value_counts())
+print(df["smoker"].value_counts(normalize=True))
+print(df["smoker"].mode())
+print(df["smoker"].nunique())   
+
+# For region:
+
+print(df["region"].value_counts())
+print(df["region"].value_counts(normalize=True))
+print(df["region"].mode())
+print(df["region"].nunique())
+    
+
+>>>>>>> 747f4593143f2e335f10ba52f4d51a8042fba67b
 
 #                     4. Univariate Graphical EDA
 
@@ -118,7 +190,7 @@ print(pd.crosstab(index=[df['sex'], df['smoker']], columns=df['region'], normali
 
 # a) 1 plot using Faceting feature
 
-sns.relplot (data = df, x = "age", y = "charges", kind = "line", col = "smoker", height = 5, aspect = 1.5)
+sns.relplot (data = df, x = "age", y = "charges", kind = "scatter", col = "smoker", height = 5, aspect = 1.5)
 
 # b) 1 plot representing 5 variables at once
 
@@ -126,7 +198,7 @@ sns.relplot (data = df, x= "age", y = "charges", kind = "scatter", hue = "region
 
 # c) 1 plot using line instead of points
 
-sns.relplot (data = df, x= "age", y = "charges", kind = "line", hue = "smoker", height = 5, aspect = 1.5)
+sns.relplot (data = df, x= "age", y = "charges", kind = "line", hue = "sex", height = 5, aspect = 1.5)
 
 # d) 1 plot illustrating standard deviation
 
@@ -141,6 +213,7 @@ sns.lmplot (data = df, x= "bmi", y = "charges", hue = "smoker", height = 5, aspe
 # a) 1 categorical scatter plot with jitter enabled
 
 sns.catplot (data=df, x= "region", y = "charges", jitter = True)
+
 
 # b) 1 categorical scatter plot with jitter disabled
 
