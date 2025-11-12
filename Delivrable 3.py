@@ -45,12 +45,11 @@ df = df.dropna()
 
 
 
-
 #                     3. Univariate non-graphical EDA
 
 # a) Numerical variables (mean, median, mode, standard deviation, variance, skewness, kurtosis and quartiles (0.25, 0.5, 0.75))
 
-<<<<<<< HEAD
+
 print(df.describe())
 
 # b) Categorical variables (frequency counts, proportion, mode (most frequent category and the number of unique categories).)
@@ -62,7 +61,7 @@ print(df['region'].value_counts(normalize=True))
 print(df['smoker'].value_counts())
 print(df['smoker'].value_counts(normalize=True))
 print(df.mode())
-=======
+
 # For age:
     
 #print(df["age"].mean())
@@ -131,7 +130,7 @@ print(df.mode())
 #print(df["region"].nunique())
     
 
->>>>>>> 747f4593143f2e335f10ba52f4d51a8042fba67b
+2
 
 #                     4. Univariate Graphical EDA
 
@@ -190,6 +189,7 @@ print(pd.crosstab(index=[df['sex'], df['smoker']], columns=df['region'], normali
 
 # a) 1 plot using Faceting feature
 
+<<<<<<< Updated upstream
 #sns.relplot (data = df, x = "age", y = "charges", kind = "scatter", col = "smoker", height = 5, aspect = 1.5)
 
 # b) 1 plot representing 5 variables at once
@@ -211,11 +211,32 @@ sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", 
 # e) 1 plot including a linear regression
 
 #sns.lmplot (data = df, x= "bmi", y = "charges", hue = "smoker", height = 5, aspect = 1.5)
+=======
+
+sns.relplot(data = df, x = "age", y = "charges", kind = "scatter", col = "smoker", height = 5, aspect = 1.5)
+
+# b) 1 plot representing 5 variables at once
+
+sns.relplot(data = df, x= "age", y = "charges", kind = "scatter", hue = "region", size = "smoker", col = "sex", height = 5, aspect = 1.5)
+
+# c) 1 plot using line instead of points
+
+sns.relplot(data = df, x= "age", y = "charges", kind = "line", hue = "sex", height = 5, aspect = 1.5)
+
+# d) 1 plot illustrating standard deviation
+
+sns.relplot(data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
+
+# e) 1 plot including a linear regression
+
+sns.lmplot(data = df, x= "bmi", y = "charges", hue = "smoker", height = 5, aspect = 1.5)
+>>>>>>> Stashed changes
 
 # 6.2 Visualizing categorical data
 
 # a) 1 categorical scatter plot with jitter enabled
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 #sns.catplot (data = df, x= "region", y = "charges", hue = "smoker")
 
@@ -224,10 +245,14 @@ sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", 
 #sns.catplot (data = df, x= "sex",  y = "charges", hue = "smoker", jitter = False)
 =======
 sns.catplot (data=df, x= "region", y = "charges", jitter = True)
+=======
+sns.catplot(data=df, x= "region", y = "charges", jitter = True)
+>>>>>>> Stashed changes
 
 
 # b) 1 categorical scatter plot with jitter disabled
 
+<<<<<<< Updated upstream
 sns.catplot (data = df, x= "sex",  y = "charges", jitter=False)
 >>>>>>> 034f28c9992c33e5d110295cf65829c1a8492f2c
 
@@ -250,28 +275,52 @@ sns.catplot (data = df, x= "sex",  y = "charges", jitter=False)
 # g) 1 violin plot with scatter points inside the violin shapes
 
 sns.catplot (data = df, x="smoker", y="charges", inner = "point", kind = "violin")
+=======
+sns.catplot(data = df, x= "sex",  y = "charges", jitter=False)
+
+# c) 1 “beeswarm” plot representing 3 variables
+
+sns.catplot(data=df, x = "smoker", y = "charges", hue = "sex", kind='swarm')
+
+# d) 1 box plot representing 3 variables
+
+sns.catplot(data = df, x= "region", y = "charges", hue = "smoker", kind='box')
+
+# e) 1 box plot showing the shape of the distribution (boxenplot())
+
+sns.catplot(data = df, x = "smoker", y = "charges", kind='boxen')
+
+# f) 1 split violin plot representing 3 variables with bandwidth adjusted for better visualization
+
+sns.catplot(data = df, x = "sex", y = "charges", hue = "smoker", split = True, bw_adjust = 0.5, kind='violin')
+
+# g) 1 violin plot with scatter points inside the violin shapes
+
+sns.catplot(data = df, x="smoker", y="charges", inner = "point", kind='violin')
+>>>>>>> Stashed changes
 
 # h) 1 bar plot representing 3 variables showing 97% confidence intervals 
 
-sns.catplot(data=df, x='sex', y='age', hue='smoker', kind='bars',errorbar=('pi',97))
+sns.catplot(data=df, x='sex', y='age', hue='smoker', kind='box',errorbar=('ci',97))
 
 # i) 1 point plot representing 3 variables showing 90% confidence intervals and lines in dashed style
-
+sns.catplot(data=df, x='sex', y='charges', hue='smoker',markers=['^','o'],linestyles=['-','--'], kind='point', errorbar=('ci',90))
 
 
 # j) 1 bar plot showing the number of observations in each category
 
-
+sns.catplot(data=df, x='sex', kind='count')
 
 # 6.3 Visualizing bivariate distributions
 
 # a) 1 “heatmap” plot representing 2 variables with color intensity bar and adjusted bin width.
 
-
+sns.displot(data=df, x='bmi',y='charges',binwidth=(5,1000),cbar=True)
 
 # b) 1 distribution plot with 2 variables making use of bivariate density contours with amount of curves and its lowest level adjusted (use a kernel density estimation displot()).
-
+sns.displot(df, x='bmi',y='charges',kind='kde')
 
 
 # c) 1 “heatmap” plot representing 3 variables, again of kind kde.
 
+sns.displot(df, x='bmi',y='charges',hue='sex',kind='kde')
