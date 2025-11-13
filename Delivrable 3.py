@@ -140,7 +140,7 @@ sns.displot(data = df, x = "age", aspect = 1, bins = 5)
 
 # b) Conditioning on other variables
 
-sns.displot(data = df, x = "bmi", hue = "sex", aspect = 1.5)
+sns.displot(data = df, x = "bmi", aspect = 1.5)
 
 # c) Stacked histogram
 
@@ -175,7 +175,8 @@ print(pd.crosstab(df['smoker'], df['region']))
 # b) Now use proportions or percentages rather than raw counts (use the “normalize” parameter from crosstab())
 
 print(pd.crosstab(df['sex'], df['smoker'],normalize=True ))
-
+print(pd.crosstab(df['sex'], df['region'], normalize=True))
+print(pd.crosstab(df['smoker'], df['region'], normalize=True))
 
 # c) Generate at least one three-way frequency table (3 or more variables, by giving a list of variables to crosstab() rather than single variables)
 
@@ -190,22 +191,22 @@ print(pd.crosstab(index=[df['sex'], df['smoker']], columns=df['region'], normali
 # a) 1 plot using Faceting feature
 
 
-sns.relplot (data = df, x = "age", y = "charges", kind = "scatter", col = "smoker", height = 5, aspect = 1.5)
+sns.relplot(data = df, x = "age", y = "charges", kind = "scatter", col = "smoker", height = 5, aspect = 1.5)
 
 # b) 1 plot representing 5 variables at once
 
-sns.relplot (data = df, x= "age", y = "charges", kind = "scatter", hue = "region", size = "smoker", col = "sex", height = 5, aspect = 1.5)
+sns.relplot(data = df, x= "age", y = "charges", kind = "scatter", hue = "region", size = "smoker", col = "sex", height = 5, aspect = 1.5)
 
 # c) 1 plot using line instead of points
 
-sns.relplot (data = df, x= "age", y = "charges", kind = "line", hue = "sex", height = 5, aspect = 1.5)
+sns.relplot(data = df, x= "age", y = "charges", kind = "line", hue = "sex", height = 5, aspect = 1.5)
 
 # d) 1 plot illustrating standard deviation
 
 
-sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
+sns.relplot(data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
 
-sns.relplot (data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
+sns.relplot(data = df, x= "bmi", y = "charges", hue = "smoker", kind = "line", errorbar = "sd", height = 5, aspect = 1.5)
 
 
 # e) 1 plot including a linear regression
