@@ -131,33 +131,42 @@ print(df)
 
 #                     4. Univariate Graphical EDA
 
+numerical_cols = ["age","bmi","children", "charges"]
+
 # a) Custom and appropriate number of bins
 
-#sns.displot(data = df, x = "age", aspect = 1, bins = 5)
+#for col in numerical_cols:
+ #   sns.displot(data = df, x = col, aspect = 1, bins = 5)
 
 # b) Conditioning on other variables
 
-#sns.displot (data = df, x = "bmi", hue = "sex", aspect = 1.5)
+#for col in numerical_cols:
+ #   sns.displot (data = df, x = col, hue = "sex", aspect = 1.5)
 
 # c) Stacked histogram
 
-#sns.histplot(data = df, x = "charges", hue = "smoker")
+#for col in numerical_cols:
+ #   sns.displot(data = df, x = col, hue = "smoker", kind = "hist", multiple = "stack")
 
 # d) Dodge bars
 
-#sns.displot(data = df, x = "children", aspect = 1, hue = "region", multiple = "dodge")
+#for col in numerical_cols:
+ #   sns.displot(data = df, x = col, aspect = 1, hue = "region", multiple = "dodge")
 
 # e) Normalized histogram statistics
 
-#sns.displot(data = df, x = "charges", hue = "sex", stat = "density", common_norm = False, aspect = 1)
+#for col in numerical_cols:
+ #   sns.displot(data = df, x = col, hue = "sex", stat = "density", common_norm = False, aspect = 1)
 
 # f) Kernel density estimation
 
-#sns.displot(data = df, x = "charges", bw_adjust = 1.5, kind = "kde")
+#for col in numerical_cols:
+ #   sns.displot(data = df, x = col, bw_adjust = 1.5, kind = "kde")
 
 # g)  Empirical cumulative distributions
 
-#sns.displot(data = df, x = "age", hue = "sex", kind = "ecdf")
+for col in numerical_cols:
+    sns.displot(data = df, x = col, hue = "sex", kind = "ecdf")
 
 
 #                        5. Multivariate non-graphical EDA
